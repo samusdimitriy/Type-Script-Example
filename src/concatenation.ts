@@ -1,28 +1,14 @@
-type Employee = {
+interface Animal {
   name: string;
-  id: number;
-};
+}
 
-type Manager = {
-  employees: Employee[];
-};
+interface Dog extends Animal {
+  bark: string;
+}
 
-type CEO = {
-  name: "Tom";
-  id: 1;
-  employees: [
-    {
-      name: "John";
-      id: 2;
-      employees: [
-        {
-          name: "Jack";
-          id: 3;
-          employees: [];
-        }
-      ];
-    }
-  ];
-};
+class MyDog implements Dog {
+  name = "Fido";
+  bark = "Woof!";
+}
 
-export type Company = Employee | Manager | CEO;
+export {};
