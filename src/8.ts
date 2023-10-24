@@ -1,9 +1,18 @@
-function merge<T extends object, U extends object>(objA: T, objB: U) {
-  return Object.assign(objA, objB);
+type Length = {
+  length: number;
+};
+
+function getLength<T extends Length>(str: T) {
+  return str.length;
 }
 
-const merged = merge({ name: "Alisa" }, "TEXT");
+getLength("Hello World");
+getLength([1, 2, 3]);
+getLength(100);
 
-console.log(merged);
+function arrayLogger<T extends Array<string>>(array: T): void {
+  array.forEach((item) => console.log(item));
+}
 
-export {};
+arrayLogger(["Hello", "World"]);
+arrayLogger([1, 2, 3]);
