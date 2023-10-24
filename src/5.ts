@@ -1,16 +1,23 @@
-const input = document.querySelector("input");
-
-if (input) {
-  (input as HTMLInputElement).value = "initial value";
-}
-
-type Person = {
+type User = {
+  id: string;
   name: string;
-  [x: string]: string;
+  email: string;
 };
 
-const user: Person = {
-  name: "John",
-  surname: "Doe",
-  country: "USA",
+type Users = {
+  [id: string]: User;
 };
+
+let users: Users = {};
+
+let user: User = {
+  id: "1",
+  name: "John",
+  email: "john@example.com",
+};
+
+users[user.id] = user;
+
+console.log(users);
+
+export default users;

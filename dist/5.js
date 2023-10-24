@@ -7,4 +7,4 @@ let user = {
 users[user.id] = user;
 console.log(users);
 export default users;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=5.js.map
