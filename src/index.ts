@@ -1,7 +1,54 @@
 class House {
-  constructor(public readonly address: { street: string; number: number }) {}
+  private tenants: string[] = [];
+
+  constructor(private readonly type: string, private street: string) {}
+
+  public showAddress(this: House) {
+    console.log("Address: " + this.street);
+  }
+
+  public showType(this: House) {
+    console.log("House Type: " + this.type);
+  }
+
+  public addTenant(tenant: string) {
+    this.tenants.push(tenant);
+  }
+
+  public showTenants() {
+    console.log(this.tenants);
+  }
 }
 
-const house = new House({ street: "Main", number: 123 });
+class StoneHouse extends House {
+  private chargeOfTheHouse: string; // Головний в домі
 
-house.address.number = 43; // pochemu tak mozhno?
+  constructor(street: string, generalTenant: string) {
+    super("stone", street); // Виклик батьківського конструктора
+
+    // Додаємо власника квартири.
+
+    this.chargeOfTheHouse = generalTenant;
+
+    this.addTenant(generalTenant);
+  }
+
+  public showTenants() {
+    console.log("General: " + this.chargeOfTheHouse);
+
+    // Запускаємо батьківський метод showTenants();
+
+    super.showTenants();
+  }
+}
+
+const stoneHouse = new StoneHouse("Stone-world", "Max");
+
+stoneHouse.addTenant("Anton");
+stoneHouse.addTenant("Nikita");
+
+stoneHouse.showTenants();
+stoneHouse.showType();
+stoneHouse.showAddress();
+
+export {};
