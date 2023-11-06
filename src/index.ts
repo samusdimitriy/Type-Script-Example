@@ -1,54 +1,31 @@
-class House {
-  private tenants: string[] = [];
+type PersonInformation = {
+  firstName?: string;
+  lastName?: string;
+}
 
-  constructor(private readonly type: string, private street: string) {}
+class Person {
+  private personInfo: PersonInformation = {};
 
-  public showAddress(this: House) {
-    console.log("Address: " + this.street);
+  set firstName(firstName: string) {
+    console.log('set firstName');
+    this.personInfo.firstName = firstName;
   }
 
-  public showType(this: House) {
-    console.log("House Type: " + this.type);
+  set lastName(lastName: string) {
+    console.log('set lastName');
+    this.personInfo.lastName = lastName;
   }
 
-  public addTenant(tenant: string) {
-    this.tenants.push(tenant);
-  }
-
-  public showTenants() {
-    console.log(this.tenants);
+  get info() {
+    const { personInfo } = this;
+    return `${personInfo.firstName} ${personInfo.lastName}`;
   }
 }
 
-class StoneHouse extends House {
-  private chargeOfTheHouse: string; // Головний в домі
+const person = new Person();
 
-  constructor(street: string, generalTenant: string) {
-    super("stone", street); // Виклик батьківського конструктора
+person.firstName = 'John';
+person.lastName = 'Doe';
 
-    // Додаємо власника квартири.
-
-    this.chargeOfTheHouse = generalTenant;
-
-    this.addTenant(generalTenant);
-  }
-
-  public showTenants() {
-    console.log("General: " + this.chargeOfTheHouse);
-
-    // Запускаємо батьківський метод showTenants();
-
-    super.showTenants();
-  }
-}
-
-const stoneHouse = new StoneHouse("Stone-world", "Max");
-
-stoneHouse.addTenant("Anton");
-stoneHouse.addTenant("Nikita");
-
-stoneHouse.showTenants();
-stoneHouse.showType();
-stoneHouse.showAddress();
-
-export {};
+console.log(person.info); 
+```
