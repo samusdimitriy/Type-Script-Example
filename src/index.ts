@@ -1,30 +1,16 @@
-type User = {
-  id: string;
-  name: string;
-  email: string;
-};
+class A {
+  protected someProperty = "str";
+}
 
-type Users = {
-  [id: string]: User;
-};
+class B extends A {
+  showProperty() {
+    console.log(this.someProperty);
+  }
+}
 
-let users: Users = {};
+const a = new A();
+const b = new B();
 
-let user: User = {
-  id: "1",
-  name: "John",
-  email: "john@example.com",
-};
-
-users[user.id] = user;
-
-console.log(users);
-
-type MyType = { [key: string]: number };
-let obj: MyType = {
-  one: 1,
-  two: 2,
-  three: "three",
-};
-
-export default users;
+a.someProperty;
+b.someProperty;
+b.showProperty();
