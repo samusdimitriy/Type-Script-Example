@@ -1,31 +1,25 @@
-type PersonInformation = {
-  firstName?: string;
-  lastName?: string;
-}
+class UseStatic {
+  private static const = 0;
 
-class Person {
-  private personInfo: PersonInformation = {};
-
-  set firstName(firstName: string) {
-    console.log('set firstName');
-    this.personInfo.firstName = firstName;
+  constructor() {
+    UseStatic.const++;
   }
 
-  set lastName(lastName: string) {
-    console.log('set lastName');
-    this.personInfo.lastName = lastName;
+  public static itStaticMethod() {
+    console.log("Run static method");
   }
 
-  get info() {
-    const { personInfo } = this;
-    return `${personInfo.firstName} ${personInfo.lastName}`;
+  public showCount() {
+    console.log(`Count: ${UseStatic.const}`);
   }
 }
 
-const person = new Person();
+const obj1 = new UseStatic();
+const obj2 = new UseStatic();
+const obj3 = new UseStatic();
 
-person.firstName = 'John';
-person.lastName = 'Doe';
+obj1.showCount();
+obj2.showCount();
+obj3.showCount();
 
-console.log(person.info); 
-```
+UseStatic.itStaticMethod();
