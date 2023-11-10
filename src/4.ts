@@ -5,5 +5,3 @@ interface ITest {
 const person: ITest = {
   name: "John",
 };
-
-person.name = "Bob";
